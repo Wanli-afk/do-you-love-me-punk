@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will you be my Grirlfriend?</title>
+  <style>
+    .wraper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      height: 100vh;
+      padding: 0 20px;
+    }
+    button{
+      padding: 15px 25px;
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+    }
+    button:hover{
+      cursor: pointer;
+      transform: scale(1.05);
+      transition: ease-in-out;
+    }
+    .btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-1{
+      background-color:#28A745;
+     
+    }
+    .btn-2{
+      background-color:#DC3444;
+     
+    }
+    @media (max-width: 888px){
+      .btn{
+        display: block;
+      }
+      .btn-1{
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wraper" id="wraper">
+    <img src="tim-heart.gif" alt="">
+      <div class="content">
+        <h3>Will you be my Grirlfriend?</h3>
+    <div class="btn">
+      <button  class="btn-1">yes!</button>
+    <button  class="btn-2">No!</button>
+    </div>
+      </div>
+  </div>
+
+  <script>
+    let yesBtn = document.querySelector('.btn-1');
+    let noBtn = document.querySelector('.btn-2');
+    let clickCount = '0';
+    const texts = ["Are you sure?","စဉ်းစားပါအုံးဗျို့!",'ရက်စက်တော့မှာလား?',"အေးဆေးစဉ်းစားပါအုံး!"
+    ]
+
+    noBtn.addEventListener('click', () => {
+      if(clickCount <texts.length){
+        noBtn.innerHTML = texts[clickCount];
+      }
+      clickCount++;
+      if(clickCount === 5){
+        noBtn.remove();
+        yesBtn.textContent = `Yes...❤️❤️❤️`;
+      }else {
+        const currentSize = window.getComputedStyle(yesBtn).getPropertyValue('font-size');
+        const newSize = parseFloat('currentSize')*1.5;
+        yesBtn.style.fontSize = newSize + "px";
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+  // Remove the existing content by removing the wrapper element
+  const clearImg = document.getElementById('wraper');
+  if (clearImg) clearImg.remove();
+
+  // Create a div to hold the full-screen image
+  const showImg = document.createElement("div");
+
+  // Create the image and set it to cover the screen
+  const yesImg = document.createElement('img');
+  yesImg.src = "funny-happy.gif";
+  yesImg.style.position = 'fixed';
+  yesImg.style.top = '0';
+  yesImg.style.left = '50';
+  yesImg.style.width = "100vw";
+  yesImg.style.height = "50vh";
+  yesImg.style.objectFit = 'contain';
+  yesImg.style.zIndex = '9999';
+  yesImg.style.transform = "translate(-50%, -50%')";
+
+  // Append the image to the showImg div
+  showImg.appendChild(yesImg);
+
+  // Append the showImg div to the document body
+  document.body.appendChild(showImg);
+});
+  </script>
+</body>
+</html>
